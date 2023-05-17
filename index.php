@@ -69,6 +69,17 @@ if (isset($_POST['search'])) {
 
 <body>
     <div class="container mt-4">
+        <span>
+            <h1 class="text-center m-4">SCEGLI IL TUO HOTEL</h1>
+        </span>
+
+        <div>
+            <form method="post"> <label for="search" class="form-label">Inserisci l'hotel con parcheggio</label>
+            <div class="input-group mb-3"> <input type="text" class="form-control" id="search" name="search"
+                placeholder="Parcheggio"> <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+            </div>
+            </form>
+        </div>
         <table class="table">
             <thead>
                 <tr>
