@@ -38,8 +38,20 @@ $hotels = [
     'distance_to_center' => 50
   ],
 ];
-var_dump($hotels);
-var_dump($hotels[0]['name'], $hotels[0]['description'], $hotels[0]['parking'], $hotels[0]['vote'], $hotels[0]['distance_to_center']);
+
+//Verifica se il form è stato compilato
+if (isset($_POST['search'])) {
+    //Qui resetto la stringa 'search' e con strtolower converto in minuscolo
+  $search = strtolower(trim($_POST['search'])); 
+
+  if ($search === 'parking') {
+    //Qui filtro l'array di hotel che hanno il parcheggio true
+    $hotels = array_filter($hotels, function ($hotel) {
+      return $hotel['parking'];
+    });
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +68,31 @@ var_dump($hotels[0]['name'], $hotels[0]['description'], $hotels[0]['parking'], $
 </head>
 
 <body>
-
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Parking</th>
+                <th scope="col">Vote</th>
+                <th scope="col">Distance to center</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <?php foreach ($hotels as $hotel) { ?>
+                    <tr>
+                        <td><?php echo $hotel['name']; ?></td>
+                        <td><?php echo $hotel['description']; ?></td>
+                        <td><?php echo $hotel['parking'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $hotel['vote']; ?></td>
+                        <td><?php echo $hotel['distance_to_center']; ?> km</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 
